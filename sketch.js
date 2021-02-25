@@ -89,6 +89,7 @@ function draw() {
       fill(map(j, 0, divs - 1, 0, 255), 200 - map(i, 0, depth - 1, 0, 200), 255);
       if(i==0){
         fill(0, 0, map(i, 0, depth - 1, 0, 255));
+        stroke(1);
       }
       //box(boxWidth, pow(ary[i][j]/16, 2) + 1, boxWidth);
       box(boxWidth-5, ary[i][j] + 1, boxWidth-5);
