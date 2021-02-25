@@ -31,6 +31,7 @@ function setup() {
   fft = new p5.FFT();
   mic.start();
   fft.setInput(mic);
+  getAudioContext().start();
   
   //create double array
   for (i = 0; i < depth; i++) {
