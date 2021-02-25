@@ -48,6 +48,7 @@ function setup() {
 }
 
 function draw() {
+   getAudioContext().resume();
   
   //set default parameters
   background(255);
@@ -59,12 +60,11 @@ function draw() {
   
   translate(-divs * boxWidth/2, 0, depth * boxWidth/2);
   
-  
  //wait((1000*pow(1/2,slider2.value())-(millis()% pow(2,slider2.value())));
   //analyze fft spectrum and smooth analysis with respect to time
   var spectrum = fft.analyze();
   fft.smooth(slider1.value());
-  getAudioContext().resume();
+
   
   for (i = depth; i > 0; i--){
    ary[i] = ary[i-1];
