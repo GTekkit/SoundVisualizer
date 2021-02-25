@@ -19,9 +19,10 @@ var fft;
 var slider1 = 0.8;  //smoothing effect  
 var slider2 = 1.0;
 var depth = 32;
-var divs = 16;//amount of divisionsmade along the sound spectrum
+var divs = 16;//amount of divisions made along the sound spectrum
 var ary = [];
 var boxWidth = 15;
+Var beat;
 
 function setup() {
   createCanvas(canvasWidth, canvasHeight, WEBGL);
@@ -45,10 +46,10 @@ function setup() {
   
   //create sliders
   slider1 = createSlider(0, 1, 0, 0.01); //smoothness
-  //slider2 = createSlider(1, 8, 1, 1); //listen speed
+  slider2 = createSlider(1, 8, 1, 1); //listen speed
 
-slider1.position(10,10);
- // slider2.position(20,20);
+  slider1.position(10,10);
+  slider2.position(20,20);
  
 }
 
@@ -65,8 +66,9 @@ function draw() {
   rotateY((mouseX-(canvasWidth/2))/ 400);
   
   translate(-divs * boxWidth/2, 0, depth * boxWidth/2);
-  
-// wait((1000*pow(1/2,slider2.value())-(millis()% pow(2,slider2.value())));
+
+  beat = pow(2, slider2.value())
+  wait((1000/beat)-(millis()% beat));
   //analyze fft spectrum and smooth analysis with respect to time
   var spectrum = fft.analyze();
   fft.smooth(slider1.value());
