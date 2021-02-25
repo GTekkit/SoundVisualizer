@@ -22,9 +22,11 @@ var depth = 32;
 var divs = 16;//amount of divisions made along the sound spectrum
 var ary = [];
 var boxWidth = 15;
-Var beat;
+var beat;
+var currTime;
 
 function setup() {
+
   createCanvas(canvasWidth, canvasHeight, WEBGL);
   colorMode(HSB, 255, 255, 255);
   
@@ -50,7 +52,8 @@ function setup() {
 
   slider1.position(10,10);
   slider2.position(20,20);
- 
+	
+  currTime = millis(); //sets timer
 }
 
 function draw() {
@@ -67,32 +70,36 @@ function draw() {
   
   translate(-divs * boxWidth/2, 0, depth * boxWidth/2);
 
-  beat = pow(2, slider2.value())
-  wait((1000/beat)-(millis()% beat));
+  if(millis() - currTime >= 250){
+  	analyzeTime();
+    currTime = millis(); //reset timer
+  }
+  drawGrid();
+  
+}
+
+
+function analyzeTime() {
+  getAudioContext().resume();
   //analyze fft spectrum and smooth analysis with respect to time
   var spectrum = fft.analyze();
   fft.smooth(slider1.value());
-
-  
-  for (i = depth; i > 0; i--){
-   ary[i] = ary[i-1];
-  }
-  
   ary[0] = spectrum;
-  
-  //Draw Graph
-  for (i = 0; i< spectrum.length; i++) {
-    var x = map(i, 0, spectrum.length, 0, width);
-    var h = map(spectrum[i], 0, 255, 0, height/2);
-  
+  for (i = depth; i > 0; i--){ //move all current spectrum data from ary[i] to ary[i+1] starting at ary[].length() and going down the I values
+    ary[i] = ary[i-1];
   }
+  ary[0] = spectrum; // set ary[0] to current sound spectrum
+  
+}
+
+function drawGrid() {
   for (i = 0; i < depth; i++) {
     push();
     translate(0, 0, -boxWidth * i);
     for (j = 0; j < divs; j++) {
       push();
       translate(boxWidth * j, 0, 0);
-      fill(map(j, 0, divs - 1, 0, 255), 200 - map(i, 0, depth - 1, 0, 200), 255);
+      fill(map(j, 0, divs - 1, 0, 255), 200 - map(i, 0, depth, 0, 200), 255);
       if(i==0){
         fill(0, 0, map(i, 0, depth - 1, 0, 255));
         stroke(1);
@@ -102,5 +109,4 @@ function draw() {
     }
     pop();
   }
-  //getAudioContext().resume();
 }
