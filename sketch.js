@@ -60,7 +60,7 @@ function draw() {
   
   translate(-divs * boxWidth/2, 0, depth * boxWidth/2);
   
- //wait((1000*pow(1/2,slider2.value())-(millis()% pow(2,slider2.value())));
+ wait((1000*pow(1/2,slider2.value())-(millis()% pow(2,slider2.value())));
   //analyze fft spectrum and smooth analysis with respect to time
   var spectrum = fft.analyze();
   fft.smooth(slider1.value());
