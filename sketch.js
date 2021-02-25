@@ -31,7 +31,6 @@ function setup() {
   fft = new p5.FFT();
   mic.start();
   fft.setInput(mic);
-  getAudioContext().start();
   
   //create double array
   for (i = 0; i < depth; i++) {
@@ -60,6 +59,7 @@ function draw() {
   //analyze fft spectrum and smooth analysis with respect to time
   var spectrum = fft.analyze();
   fft.smooth(slider1.value());
+  getAudioContext().resume();
   
   for (i = depth; i > 0; i--){
    ary[i] = ary[i-1];
