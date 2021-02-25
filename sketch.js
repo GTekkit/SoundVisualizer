@@ -28,8 +28,9 @@ function setup() {
   
   //create objects for the sound anaysis
   mic = new p5.AudioIn();
-  fft = new p5.FFT();
   mic.start();
+  
+  fft = new p5.FFT();
   fft.setInput(mic);
   
   //create double array
@@ -92,7 +93,6 @@ function draw() {
         fill(0, 0, map(i, 0, depth - 1, 0, 255));
         stroke(1);
       }
-      //box(boxWidth, pow(ary[i][j]/16, 2) + 1, boxWidth);
       box(boxWidth-5, ary[i][j] + 1, boxWidth-5);
       pop();
     }
