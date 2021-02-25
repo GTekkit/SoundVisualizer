@@ -26,11 +26,9 @@ var boxWidth = 15;
 function setup() {
   createCanvas(canvasWidth, canvasHeight, WEBGL);
   colorMode(HSB, 255, 255, 255);
-
-  slider1.position(10,10);
- // slider2.position(20,20);
   
-  //create objects for the sound anaysis
+  
+  //create objects for the sound analysis
   mic = new p5.AudioIn();
   mic.start();
   
@@ -48,6 +46,9 @@ function setup() {
   //create sliders
   slider1 = createSlider(0, 1, 0, 0.01); //smoothness
   //slider2 = createSlider(1, 8, 1, 1); //listen speed
+
+slider1.position(10,10);
+ // slider2.position(20,20);
  
 }
 
