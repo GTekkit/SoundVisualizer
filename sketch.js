@@ -42,7 +42,8 @@ function setup() {
   }
   
   //create sliders
-  slider1 = createSlider(0, 1, 0, 0.01);
+  slider1 = createSlider(0, 1, 0, 0.01); //smoothness
+  slider2 = createSlider(1, 8, 1, 1); //listen speed
 }
 
 function draw() {
@@ -57,6 +58,8 @@ function draw() {
   
   translate(-divs * boxWidth/2, 0, depth * boxWidth/2);
   
+  
+ wait((1000*pow(1/2,slider2.value())-(millis()% pow(2,slider2.value())));
   //analyze fft spectrum and smooth analysis with respect to time
   var spectrum = fft.analyze();
   fft.smooth(slider1.value());
@@ -73,13 +76,6 @@ function draw() {
     var x = map(i, 0, spectrum.length, 0, width);
     var h = map(spectrum[i], 0, 255, 0, height/2);
   
-  /*push();
-      translate(width/2,height/2);
-      rotate(2*PI/spectrum.length*i*1.3);
-      translate(100,0);
-      rotate(-PI/2);
-      rect(50*2*PI/spectrum.length, 0, 100*2*PI/spectrum.length, h );
-    pop();*/
   }
   for (i = 0; i < depth; i++) {
     push();
@@ -87,7 +83,6 @@ function draw() {
     for (j = 0; j < divs; j++) {
       push();
       translate(boxWidth * j, 0, 0);
-      //fill(0, 0, map(i, 0, depth - 1, 0, 255));
       fill(map(j, 0, divs - 1, 0, 255), 200 - map(i, 0, depth - 1, 0, 200), 255);
       if(i==0){
         fill(0, 0, map(i, 0, depth - 1, 0, 255));
