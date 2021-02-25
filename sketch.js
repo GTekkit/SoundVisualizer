@@ -25,11 +25,12 @@ var boxWidth = 15;
 function setup() {
   createCanvas(canvasWidth, canvasHeight, WEBGL);
   colorMode(HSB, 255, 255, 255);
+  
   //create objects for the sound anaysis
-  fft = new p5.FFT();
   mic = new p5.AudioIn();
-  fft.setInput(mic);
+  fft = new p5.FFT();
   mic.start();
+  fft.setInput(mic);
   
   //create double array
   for (i = 0; i < depth; i++) {
@@ -95,5 +96,5 @@ function draw() {
     }
     pop();
   }
-  getAudioContext().resume();
+  //getAudioContext().resume();
 }
