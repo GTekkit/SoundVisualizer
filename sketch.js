@@ -45,6 +45,9 @@ function setup() {
   //create sliders
   slider1 = createSlider(0, 1, 0, 0.01); //smoothness
   slider2 = createSlider(1, 8, 1, 1); //listen speed
+ 
+  slider1.position(10,10);
+  slider2.position(10,20);
 }
 
 function draw() {
