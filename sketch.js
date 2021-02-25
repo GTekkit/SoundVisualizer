@@ -60,7 +60,7 @@ function draw() {
   //analyze fft spectrum and smooth analysis with respect to time
   var spectrum = fft.analyze();
   fft.smooth(slider1.value());
-  //getAudioContext().resume();
+  getAudioContext().resume();
   
   for (i = depth; i > 0; i--){
    ary[i] = ary[i-1];
@@ -98,5 +98,5 @@ function draw() {
     }
     pop();
   }
-  getAudioContext().resume();
+  //getAudioContext().resume();
 }
