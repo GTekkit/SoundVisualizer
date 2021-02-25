@@ -95,4 +95,5 @@ function draw() {
     }
     pop();
   }
+  getAudioContext().resume();
 }
