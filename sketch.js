@@ -28,7 +28,7 @@ function setup() {
   colorMode(HSB, 255, 255, 255);
 
   slider1.position(10,10);
-  slider2.position(20,20);
+ // slider2.position(20,20);
   
   //create objects for the sound anaysis
   mic = new p5.AudioIn();
@@ -47,7 +47,7 @@ function setup() {
   
   //create sliders
   slider1 = createSlider(0, 1, 0, 0.01); //smoothness
-  slider2 = createSlider(1, 8, 1, 1); //listen speed
+  //slider2 = createSlider(1, 8, 1, 1); //listen speed
  
 }
 
@@ -65,7 +65,7 @@ function draw() {
   
   translate(-divs * boxWidth/2, 0, depth * boxWidth/2);
   
- wait((1000*pow(1/2,slider2.value())-(millis()% pow(2,slider2.value())));
+// wait((1000*pow(1/2,slider2.value())-(millis()% pow(2,slider2.value())));
   //analyze fft spectrum and smooth analysis with respect to time
   var spectrum = fft.analyze();
   fft.smooth(slider1.value());
