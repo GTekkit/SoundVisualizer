@@ -17,6 +17,7 @@ var canvasWidth = 1440;
 var mic;
 var fft;
 var slider1 = 0.8;  //smoothing effect  //amount of divisionsmade along the sound spectrum
+var slider2;
 var depth = 50;
 var divs = 32;
 var ary = [];
