@@ -20,8 +20,11 @@ var slider1 = 0.8;  //smoothing effect
 var slider2 = 1.0;
 var depth = 32;
 var divs = 16;//amount of divisions made along the sound spectrum
+var depth = 16;
+var divs = 32;//amount of divisions made along the sound spectrum
 var ary = [];
-var boxWidth = 15;
+var boxWidth = 20;
+var boxGap = 0;
 var beat;
 var currTime;
 
@@ -70,7 +73,7 @@ function draw() {
   
   translate(-divs * boxWidth/2, 0, depth * boxWidth/2);
 
-  if(millis() - currTime >= 250){
+  if(millis() - currTime >= 1000/slider2.value()){
   	analyzeTime();
     currTime = millis(); //reset timer
   }
@@ -104,7 +107,7 @@ function drawGrid() {
         fill(0, 0, map(i, 0, depth - 1, 0, 255));
         stroke(1);
       }
-      box(boxWidth-5, ary[i][j] + 1, boxWidth-5);
+      box(boxWidth-boxGap, ary[i][j] + 1, boxWidth-boxGap);
       pop();
     }
     pop();
