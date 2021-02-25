@@ -26,6 +26,9 @@ var boxWidth = 15;
 function setup() {
   createCanvas(canvasWidth, canvasHeight, WEBGL);
   colorMode(HSB, 255, 255, 255);
+
+  slider1.position(10,10);
+  slider2.position(20,20);
   
   //create objects for the sound anaysis
   mic = new p5.AudioIn();
@@ -49,9 +52,6 @@ function setup() {
 }
 
 function draw() {
-
-  slider1.position(10,10);
-  slider2.position(10,20);
 
   getAudioContext().resume();
   
