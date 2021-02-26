@@ -18,8 +18,6 @@ var mic;
 var fft;
 var slider1 = 0.8;  //smoothing effect  
 var slider2 = 1.0;
-var depth = 32;
-var divs = 16;//amount of divisions made along the sound spectrum
 var depth = 16;
 var divs = 32;//amount of divisions made along the sound spectrum
 var ary = [];
